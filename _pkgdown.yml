@@ -1,0 +1,64 @@
+url: https://michael-cw.github.io/huer/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+home:
+  title: huer — Philips Hue Bridge API v2 and Bridge Pro Client
+  description: >
+    Complete httr2, tidyjson, and cli R client for all GET, POST, PUT, and
+    DELETE endpoints on Philips Hue Bridge v2 and Bridge Pro.
+
+reference:
+  - title: Bridge Connection, Discovery & Auth
+    desc: Connect to a local Philips Hue Bridge, discover bridges, and manage keys.
+    contents:
+      - hue_bridge
+      - hue_auth
+      - hue_discover
+      - hue_create_app_key
+      - hue_get_application_id
+
+  - title: Core Resources & Real-Time Streaming
+    desc: Inspect all 41 endpoints, call generic CLIP v2 CRUD routes, and stream SSE events.
+    contents:
+      - hue_endpoints
+      - hue_resources
+      - hue_eventstream
+
+  - title: Lighting, Groups & Scenes
+    desc: Control lights, grouped lights, rooms, zones, bridge homes, service groups, and scenes.
+    contents:
+      - hue_lighting
+      - hue_groups
+      - hue_scenes
+
+  - title: Devices, Sensors & Bridge Pro MotionAware
+    desc: Manage hardware devices, firmware, sensors, and Bridge Pro MotionAware areas.
+    contents:
+      - hue_devices
+      - hue_sensors
+      - hue_motion_areas
+
+  - title: Connectivity, Entertainment & Automation
+    desc: Manage Zigbee/Wi-Fi connectivity, Entertainment streaming, speakers, behaviors, HomeKit, and Matter.
+    contents:
+      - hue_connectivity
+      - hue_entertainment
+      - hue_automation
+
+  - title: Payload Builders & TidyJSON Helpers
+    desc: Construct validated JSON payloads and explore nested CLIP v2 responses with tidyjson.
+    contents:
+      - hue_payload_light
+      - hue_resource_identifier
+      - hue_parse_response
+      - hue_unnest_array
+
+articles:
+  - title: Guides
+    navbar: ~
+    contents:
+      - huer
+      - shiny-app

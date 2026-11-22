@@ -8,6 +8,15 @@
 \description{
 Provides a complete 'httr2'-based client for the 'Philips Hue' 'CLIP' API v2 and Bridge Pro local HTTPS endpoints, covering all GET, POST, PUT, and DELETE resource operations, bridge discovery, authentication, and real-time Server-Sent Events ('SSE') streaming. API responses are parsed into tidy structures using 'tidyjson', with structured diagnostics powered by 'cli'.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://michael-cw.github.io/huer/}
+  \item \url{https://github.com/michael-cw/huer}
+  \item Report bugs at \url{https://github.com/michael-cw/huer/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Michael Wild \email{michael.wild@me.com}
 
