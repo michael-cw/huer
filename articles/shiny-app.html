@@ -78,8 +78,8 @@ lights inside each room or zone.</p>
 <ul>
 <li>
 <code>huer</code> — connects to the Philips Hue CLIP API v2 via
-<code>httr2</code> and parses JSON responses into <code>tidyjson</code>
-tibbles.</li>
+<code>httr2</code> and parses JSON responses into tidy tibbles with
+<code>jsonlite</code>.</li>
 <li>
 <code>shiny</code> — provides the reactive web application
 framework.</li>
@@ -118,9 +118,9 @@ member lights directly in <code>children</code>
 <li>A <strong>scene</strong> (<code><a href="../reference/hue_scenes.html">hue_get_scenes()</a></code>) links to
 its room or zone via <code>group.rid</code>.</li>
 </ul>
-<p>Because <code>huer</code> returns <code>tbl_json</code> objects,
-<code><a href="../reference/hue_unnest_array.html">hue_unnest_array()</a></code> resolves these relationships in a single
-line:</p>
+<p>Because <code>huer</code> stores nested JSON arrays as list-columns
+on the returned <code>tibble</code>, <code><a href="../reference/hue_unnest_array.html">hue_unnest_array()</a></code>
+resolves these relationships in a single line:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://michael-cw.github.io/huer/">huer</a></span><span class="op">)</span></span>
 <span></span>
@@ -156,10 +156,10 @@ line:</p>
 <span>  drop <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">]</span></span>
 <span><span class="va">room_lights</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"metadata.name"</span>, <span class="st">"on.on"</span>, <span class="st">"dimming.brightness"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
-<span><span class="co">#&gt;   ..JSON                   id      metadata.name on.on dimming.brightness</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">"</span>{\"id\":\"light-1\"...<span style="color: #949494;">"</span> light-1 Floor Lamp    TRUE                  80</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
+<span><span class="co">#&gt;   id      metadata.name on.on dimming.brightness</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> light-1 Floor Lamp    TRUE                  80</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="step-2-converting-hex-colors-to-cie-1931-xy">Step 2: Converting Hex Colors to CIE 1931 xy<a class="anchor" aria-label="anchor" href="#step-2-converting-hex-colors-to-cie-1931-xy"></a>

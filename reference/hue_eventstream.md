@@ -23,9 +23,9 @@ hue_eventstream(
 - callback:
 
   Optional function invoked for each received SSE event. It receives a
-  single argument: the parsed event object (`tbl_json` when
-  `tidy = TRUE`, or a parsed list when `tidy = FALSE`). Return `FALSE`
-  from `callback` to stop streaming early.
+  single argument: the parsed event object (`tibble` when `tidy = TRUE`,
+  or a parsed list when `tidy = FALSE`). Return `FALSE` from `callback`
+  to stop streaming early.
 
 - max_events:
 
@@ -47,7 +47,8 @@ hue_eventstream(
 - tidy:
 
   Logical scalar. If `TRUE` (default), parses each event's JSON data
-  payload with `tidyjson`. If `FALSE`, returns raw parsed lists.
+  payload into a `tibble` with `jsonlite`. If `FALSE`, returns raw
+  parsed lists.
 
 ## Value
 

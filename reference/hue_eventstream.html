@@ -71,7 +71,7 @@ updates).</p>
 
 <dl><dt id="arg-callback">callback<a class="anchor" aria-label="anchor" href="#arg-callback"></a></dt>
 <dd><p>Optional function invoked for each received SSE event. It
-receives a single argument: the parsed event object (<code>tbl_json</code> when
+receives a single argument: the parsed event object (<code>tibble</code> when
 <code>tidy = TRUE</code>, or a parsed list when <code>tidy = FALSE</code>). Return <code>FALSE</code> from
 <code>callback</code> to stop streaming early.</p></dd>
 
@@ -94,7 +94,8 @@ variables.</p></dd>
 
 <dt id="arg-tidy">tidy<a class="anchor" aria-label="anchor" href="#arg-tidy"></a></dt>
 <dd><p>Logical scalar. If <code>TRUE</code> (default), parses each event's JSON
-data payload with <code>tidyjson</code>. If <code>FALSE</code>, returns raw parsed lists.</p></dd>
+data payload into a <code>tibble</code> with <code>jsonlite</code>. If <code>FALSE</code>, returns raw
+parsed lists.</p></dd>
 
 </dl></div>
     <div class="section level2">

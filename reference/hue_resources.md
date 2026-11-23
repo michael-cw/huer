@@ -31,8 +31,8 @@ hue_resource_delete(resource, id, bridge = NULL, tidy = TRUE)
 
 - tidy:
 
-  Logical scalar. If `TRUE` (default), returns a `tbl_json` tibble
-  parsed via `tidyjson`. If `FALSE`, returns the raw parsed R list.
+  Logical scalar. If `TRUE` (default), returns a `tibble` parsed via
+  `jsonlite`. If `FALSE`, returns the raw parsed R list.
 
 - resource:
 
@@ -52,8 +52,8 @@ hue_resource_delete(resource, id, bridge = NULL, tidy = TRUE)
 
 ## Value
 
-A `tbl_json` tibble (or list when `tidy = FALSE`) representing the
-bridge response `data` array.
+A `tibble` (or list when `tidy = FALSE`) representing the bridge
+response `data` array.
 
 ## See also
 

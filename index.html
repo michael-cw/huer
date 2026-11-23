@@ -10,9 +10,9 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="huer — Philips Hue Bridge API v2 and Bridge Pro Client">
-<meta name="description" content="Complete httr2, tidyjson, and cli R client for all GET, POST, PUT, and DELETE endpoints on Philips Hue Bridge v2 and Bridge Pro.
+<meta name="description" content="Complete httr2, jsonlite, and cli R client for all GET, POST, PUT, and DELETE endpoints on Philips Hue Bridge v2 and Bridge Pro.
 ">
-<meta property="og:description" content="Complete httr2, tidyjson, and cli R client for all GET, POST, PUT, and DELETE endpoints on Philips Hue Bridge v2 and Bridge Pro.
+<meta property="og:description" content="Complete httr2, jsonlite, and cli R client for all GET, POST, PUT, and DELETE endpoints on Philips Hue Bridge v2 and Bridge Pro.
 ">
 </head>
 <body>
@@ -57,7 +57,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="huer">huer<a class="anchor" aria-label="anchor" href="#huer"></a>
 </h1></div>
-<p><code>huer</code> is a complete R client for the <strong>Philips Hue CLIP API v2</strong> and <strong>Hue Bridge Pro</strong> local HTTPS endpoints, built on <a href="https://cran.r-project.org/package=httr2" class="external-link"><code>httr2</code></a>, <a href="https://cran.r-project.org/package=tidyjson" class="external-link"><code>tidyjson</code></a>, and <a href="https://cran.r-project.org/package=cli" class="external-link"><code>cli</code></a>.</p>
+<p><code>huer</code> is a complete R client for the <strong>Philips Hue CLIP API v2</strong> and <strong>Hue Bridge Pro</strong> local HTTPS endpoints, built on <a href="https://cran.r-project.org/package=httr2" class="external-link"><code>httr2</code></a>, <a href="https://cran.r-project.org/package=jsonlite" class="external-link"><code>jsonlite</code></a>, and <a href="https://cran.r-project.org/package=cli" class="external-link"><code>cli</code></a>.</p>
 <div class="section level2">
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
@@ -67,7 +67,7 @@
 <li>
 <strong>Discovery, Onboarding &amp; Streaming</strong>: Local bridge discovery (<code><a href="reference/hue_discover.html">hue_discover()</a></code>), link-button application key generation (<code><a href="reference/hue_create_app_key.html">hue_create_app_key()</a></code>), Entertainment DTLS app ID lookup (<code><a href="reference/hue_get_application_id.html">hue_get_application_id()</a></code>), and real-time Server-Sent Events streaming (<code><a href="reference/hue_eventstream.html">hue_eventstream()</a></code>).</li>
 <li>
-<strong>Tidy JSON Output</strong>: Responses are parsed via <code>tidyjson</code> into <code>tbl_json</code> tibbles with flattened columns and preserved <code>..JSON</code> payloads for expanding nested arrays via <code><a href="reference/hue_unnest_array.html">hue_unnest_array()</a></code>.</li>
+<strong>Tidy JSON Output</strong>: Responses are parsed via <code>jsonlite</code> into <code>tibble</code> data frames with flattened dot-separated columns and nested array list-columns that can be expanded with <code><a href="reference/hue_unnest_array.html">hue_unnest_array()</a></code>.</li>
 <li>
 <strong>Structured Diagnostics</strong>: Human-readable error and partial-error messages powered by <code>cli</code> and <code>httr2</code>.</li>
 </ul>

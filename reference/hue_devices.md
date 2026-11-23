@@ -45,8 +45,8 @@ hue_update_bridge(id, body, bridge = NULL, tidy = TRUE)
 
 - tidy:
 
-  Logical scalar. If `TRUE` (default), returns a `tbl_json` tibble
-  parsed via `tidyjson`. If `FALSE`, returns the raw parsed R list.
+  Logical scalar. If `TRUE` (default), returns a `tibble` parsed via
+  `jsonlite`. If `FALSE`, returns the raw parsed R list.
 
 - id:
 
@@ -59,8 +59,8 @@ hue_update_bridge(id, body, bridge = NULL, tidy = TRUE)
 
 ## Value
 
-A `tbl_json` tibble (or list when `tidy = FALSE`) containing the bridge
-response `data` array.
+A `tibble` (or list when `tidy = FALSE`) containing the bridge response
+`data` array.
 
 ## Details
 

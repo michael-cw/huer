@@ -55,8 +55,8 @@ hue_create_app_key(
 
 ## Value
 
-A `tbl_json` tibble containing `username` (the `hue-application-key`)
-and, when requested, `clientkey`.
+A `tibble` containing `username` (the `hue-application-key`) and, when
+requested, `clientkey`.
 
 ## Details
 

@@ -3,7 +3,7 @@
 `huer` is a complete R client for the **Philips Hue CLIP API v2** and
 **Hue Bridge Pro** local HTTPS endpoints, built on
 [`httr2`](https://cran.r-project.org/package=httr2),
-[`tidyjson`](https://cran.r-project.org/package=tidyjson), and
+[`jsonlite`](https://cran.r-project.org/package=jsonlite), and
 [`cli`](https://cran.r-project.org/package=cli).
 
 ## Features
@@ -24,9 +24,9 @@
   ([`hue_get_application_id()`](https://michael-cw.github.io/huer/reference/hue_get_application_id.md)),
   and real-time Server-Sent Events streaming
   ([`hue_eventstream()`](https://michael-cw.github.io/huer/reference/hue_eventstream.md)).
-- **Tidy JSON Output**: Responses are parsed via `tidyjson` into
-  `tbl_json` tibbles with flattened columns and preserved `..JSON`
-  payloads for expanding nested arrays via
+- **Tidy JSON Output**: Responses are parsed via `jsonlite` into
+  `tibble` data frames with flattened dot-separated columns and nested
+  array list-columns that can be expanded with
   [`hue_unnest_array()`](https://michael-cw.github.io/huer/reference/hue_unnest_array.md).
 - **Structured Diagnostics**: Human-readable error and partial-error
   messages powered by `cli` and `httr2`.
@@ -262,10 +262,10 @@ behaviors, HomeKit, and Matter.
   [`hue_delete_matter_fabric()`](https://michael-cw.github.io/huer/reference/hue_automation.md)
   : Automation, Geofencing, HomeKit, and Matter Endpoints
 
-## Payload Builders & TidyJSON Helpers
+## Payload Builders & JSON Helpers
 
 Construct validated JSON payloads and explore nested CLIP v2 responses
-with tidyjson.
+as tidy tibbles.
 
 - [`hue_payload_light()`](https://michael-cw.github.io/huer/reference/hue_payload_light.md)
   : Build a Light or Grouped Light State Update Payload
@@ -274,7 +274,7 @@ with tidyjson.
 - [`hue_parse_response()`](https://michael-cw.github.io/huer/reference/hue_parse_response.md)
   : Parse a Philips Hue CLIP API v2 JSON Response
 - [`hue_unnest_array()`](https://michael-cw.github.io/huer/reference/hue_unnest_array.md)
-  : Unnest a Nested JSON Array Field from a Hue Response
+  : Unnest a Nested JSON Array Column from a Hue Response
 
 # Articles
 

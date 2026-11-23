@@ -98,8 +98,8 @@ variables.</p></dd>
 
 
 <dt id="arg-tidy">tidy<a class="anchor" aria-label="anchor" href="#arg-tidy"></a></dt>
-<dd><p>Logical scalar. If <code>TRUE</code> (default), returns a <code>tbl_json</code> tibble
-parsed via <code>tidyjson</code>. If <code>FALSE</code>, returns the raw parsed R list.</p></dd>
+<dd><p>Logical scalar. If <code>TRUE</code> (default), returns a <code>tibble</code>
+parsed via <code>jsonlite</code>. If <code>FALSE</code>, returns the raw parsed R list.</p></dd>
 
 
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
@@ -128,7 +128,7 @@ dimming brightness during recall.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code>tbl_json</code> tibble (or list when <code>tidy = FALSE</code>) containing the
+    <p>A <code>tibble</code> (or list when <code>tidy = FALSE</code>) containing the
 bridge response <code>data</code> array.</p>
     </div>
     <div class="section level2">

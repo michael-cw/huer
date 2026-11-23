@@ -11,7 +11,7 @@ each room or zone.
 The application uses four packages:
 
 - `huer` — connects to the Philips Hue CLIP API v2 via `httr2` and
-  parses JSON responses into `tidyjson` tibbles.
+  parses JSON responses into tidy tibbles with `jsonlite`.
 - `shiny` — provides the reactive web application framework.
 - `bslib` — provides a modern Bootstrap 5 sidebar layout
   ([`page_sidebar()`](https://rstudio.github.io/bslib/reference/page_sidebar.html)),
@@ -50,7 +50,8 @@ inside nested JSON arrays (`children` and `services`):
   ([`hue_get_scenes()`](https://michael-cw.github.io/huer/reference/hue_scenes.md))
   links to its room or zone via `group.rid`.
 
-Because `huer` returns `tbl_json` objects,
+Because `huer` stores nested JSON arrays as list-columns on the returned
+`tibble`,
 [`hue_unnest_array()`](https://michael-cw.github.io/huer/reference/hue_unnest_array.md)
 resolves these relationships in a single line:
 
@@ -90,10 +91,10 @@ room_lights <- lights[
   drop = FALSE
 ]
 room_lights[, c("id", "metadata.name", "on.on", "dimming.brightness")]
-#> # A tibble: 1 × 5
-#>   ..JSON                   id      metadata.name on.on dimming.brightness
-#>   <chr>                    <chr>   <chr>         <lgl>              <dbl>
-#> 1 "{\"id\":\"light-1\"..." light-1 Floor Lamp    TRUE                  80
+#> # A tibble: 1 × 4
+#>   id      metadata.name on.on dimming.brightness
+#>   <chr>   <chr>         <lgl>              <int>
+#> 1 light-1 Floor Lamp    TRUE                  80
 ```
 
 ## Step 2: Converting Hex Colors to CIE 1931 xy

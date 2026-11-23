@@ -19,13 +19,13 @@ hue_discover(timeout = 10, tidy = TRUE)
 - tidy:
 
   Logical scalar. If `TRUE` (default), parses the JSON response into a
-  `tbl_json` tibble via `tidyjson`. If `FALSE`, returns the parsed R
-  list from `jsonlite`.
+  `tibble` via `jsonlite`. If `FALSE`, returns the parsed R list from
+  `jsonlite`.
 
 ## Value
 
-A `tbl_json` tibble (or list when `tidy = FALSE`) containing discovered
-bridges (`id`, `internalipaddress`, `port`).
+A `tibble` (or list when `tidy = FALSE`) containing discovered bridges
+(`id`, `internalipaddress`, `port`).
 
 ## See also
 

@@ -3,7 +3,7 @@
 `huer` is a complete R client for the **Philips Hue CLIP API v2** and
 **Hue Bridge Pro** local HTTPS endpoints, built on
 [`httr2`](https://cran.r-project.org/package=httr2),
-[`tidyjson`](https://cran.r-project.org/package=tidyjson), and
+[`jsonlite`](https://cran.r-project.org/package=jsonlite), and
 [`cli`](https://cran.r-project.org/package=cli).
 
 ## Features
@@ -24,9 +24,9 @@
   ([`hue_get_application_id()`](https://michael-cw.github.io/huer/reference/hue_get_application_id.md)),
   and real-time Server-Sent Events streaming
   ([`hue_eventstream()`](https://michael-cw.github.io/huer/reference/hue_eventstream.md)).
-- **Tidy JSON Output**: Responses are parsed via `tidyjson` into
-  `tbl_json` tibbles with flattened columns and preserved `..JSON`
-  payloads for expanding nested arrays via
+- **Tidy JSON Output**: Responses are parsed via `jsonlite` into
+  `tibble` data frames with flattened dot-separated columns and nested
+  array list-columns that can be expanded with
   [`hue_unnest_array()`](https://michael-cw.github.io/huer/reference/hue_unnest_array.md).
 - **Structured Diagnostics**: Human-readable error and partial-error
   messages powered by `cli` and `httr2`.

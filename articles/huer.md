@@ -3,8 +3,8 @@
 `huer` is an `httr2`-based R client for the **Philips Hue CLIP API v2**
 and **Hue Bridge Pro** local HTTPS endpoints. It wraps all `GET`,
 `POST`, `PUT`, and `DELETE` resource operations across 41 CLIP v2 and
-Bridge Pro resource types, parses JSON envelopes into tidy `tbl_json`
-tables via `tidyjson`, and provides clear diagnostics powered by `cli`.
+Bridge Pro resource types, parses JSON envelopes into tidy `tibble` data
+frames via `jsonlite`, and provides clear diagnostics powered by `cli`.
 
 ## Discovering and Authenticating with a Bridge
 
@@ -146,14 +146,14 @@ scenes <- hue_get_scenes()
 hue_recall_scene(scenes$id[[1]], action = "active", duration = 1000)
 ```
 
-## Working with `tidyjson` Responses
+## Working with Nested JSON Responses
 
 Every API response from `huer` is parsed through
 [`hue_parse_response()`](https://michael-cw.github.io/huer/reference/hue_parse_response.md)
-into a `tbl_json` object (which inherits from `tibble`). Scalar and
-nested object properties are spread into columns automatically, while
-nested arrays (such as `children`, `services`, or `actions`) remain
-accessible through
+into a `tibble`. Scalar and nested object properties are flattened into
+dot-separated columns automatically, while nested arrays (such as
+`children`, `services`, or `actions`) are stored as list-columns that
+can be expanded cleanly with
 [`hue_unnest_array()`](https://michael-cw.github.io/huer/reference/hue_unnest_array.md):
 
 ``` r
@@ -169,23 +169,23 @@ sample_room <- paste0(
 
 rooms <- hue_parse_response(sample_room)
 rooms
-#> # A tibble: 1 × 5
-#>   ..JSON                   id      type  metadata.name metadata.archetype
-#>   <chr>                    <chr>   <chr> <chr>         <chr>             
-#> 1 "{\"id\":\"room-01\"..." room-01 room  Living Room   living_room
+#> # A tibble: 1 × 6
+#>   id      type  metadata.name metadata.archetype children         services
+#>   <chr>   <chr> <chr>         <chr>              <list>           <list>  
+#> 1 room-01 room  Living Room   living_room        <tibble [2 × 2]> <tibble>
 
-# Expand nested arrays directly with tidyjson
+# Expand nested array list-columns
 hue_unnest_array(rooms, "children")
 #> # A tibble: 2 × 7
-#>   ..JSON                id    type  metadata.name metadata.archetype rid   rtype
-#>   <chr>                 <chr> <chr> <chr>         <chr>              <chr> <chr>
-#> 1 "{\"rid\":\"dev-01\"… room… room  Living Room   living_room        dev-… devi…
-#> 2 "{\"rid\":\"dev-02\"… room… room  Living Room   living_room        dev-… devi…
+#>   id      type  metadata.name metadata.archetype services         rid    rtype 
+#>   <chr>   <chr> <chr>         <chr>              <list>           <chr>  <chr> 
+#> 1 room-01 room  Living Room   living_room        <tibble [1 × 2]> dev-01 device
+#> 2 room-01 room  Living Room   living_room        <tibble [1 × 2]> dev-02 device
 hue_unnest_array(rooms, "services")
 #> # A tibble: 1 × 7
-#>   ..JSON                id    type  metadata.name metadata.archetype rid   rtype
-#>   <chr>                 <chr> <chr> <chr>         <chr>              <chr> <chr>
-#> 1 "{\"rid\":\"gl-01\",… room… room  Living Room   living_room        gl-01 grou…
+#>   id      type  metadata.name metadata.archetype children         rid   rtype   
+#>   <chr>   <chr> <chr>         <chr>              <list>           <chr> <chr>   
+#> 1 room-01 room  Living Room   living_room        <tibble [2 × 2]> gl-01 grouped…
 ```
 
 Set `tidy = FALSE` on any endpoint call if you prefer the raw parsed R

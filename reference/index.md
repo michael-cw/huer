@@ -194,10 +194,10 @@ behaviors, HomeKit, and Matter.
   [`hue_delete_matter_fabric()`](https://michael-cw.github.io/huer/reference/hue_automation.md)
   : Automation, Geofencing, HomeKit, and Matter Endpoints
 
-## Payload Builders & TidyJSON Helpers
+## Payload Builders & JSON Helpers
 
 Construct validated JSON payloads and explore nested CLIP v2 responses
-with tidyjson.
+as tidy tibbles.
 
 - [`hue_payload_light()`](https://michael-cw.github.io/huer/reference/hue_payload_light.md)
   : Build a Light or Grouped Light State Update Payload
@@ -206,4 +206,4 @@ with tidyjson.
 - [`hue_parse_response()`](https://michael-cw.github.io/huer/reference/hue_parse_response.md)
   : Parse a Philips Hue CLIP API v2 JSON Response
 - [`hue_unnest_array()`](https://michael-cw.github.io/huer/reference/hue_unnest_array.md)
-  : Unnest a Nested JSON Array Field from a Hue Response
+  : Unnest a Nested JSON Array Column from a Hue Response

@@ -63,13 +63,13 @@ Bridge v2 and Bridge Pro) registered on the same public network.</p>
 
 <dt id="arg-tidy">tidy<a class="anchor" aria-label="anchor" href="#arg-tidy"></a></dt>
 <dd><p>Logical scalar. If <code>TRUE</code> (default), parses the JSON response
-into a <code>tbl_json</code> tibble via <code>tidyjson</code>. If <code>FALSE</code>, returns the parsed R
+into a <code>tibble</code> via <code>jsonlite</code>. If <code>FALSE</code>, returns the parsed R
 list from <code>jsonlite</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code>tbl_json</code> tibble (or list when <code>tidy = FALSE</code>) containing
+    <p>A <code>tibble</code> (or list when <code>tidy = FALSE</code>) containing
 discovered bridges (<code>id</code>, <code>internalipaddress</code>, <code>port</code>).</p>
     </div>
     <div class="section level2">
