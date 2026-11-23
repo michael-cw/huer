@@ -49,7 +49,7 @@ test_that("hue_discover parses bridge discovery array", {
   })
 
   res <- hue_discover()
-  expect_s3_class(res, "tbl_json")
+  expect_s3_class(res, "tbl_df")
   expect_identical(res$internalipaddress, "192.168.1.42")
   expect_identical(res$id, "001788fffe000001")
 
@@ -69,7 +69,7 @@ test_that("hue_create_app_key handles success and link button errors", {
   })
 
   creds <- hue_create_app_key("192.168.1.42", app_name = "huer", instance_name = "mac")
-  expect_s3_class(creds, "tbl_json")
+  expect_s3_class(creds, "tbl_df")
   expect_identical(creds$username, "new-app-key")
   expect_identical(creds$clientkey, "DEADBEAF")
 

@@ -43,7 +43,7 @@
 #'   (for example, `list(enabled = TRUE)`).
 #' @inheritParams hue_resources
 #'
-#' @return A `tbl_json` tibble (or list when `tidy = FALSE`) containing the
+#' @return A `tibble` (or list when `tidy = FALSE`) containing the
 #'   bridge response `data` array.
 #' @seealso [hue_motion_areas], [hue_eventstream()]
 #' @name hue_sensors

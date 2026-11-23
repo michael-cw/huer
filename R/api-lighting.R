@@ -22,7 +22,7 @@
 #'   (see [hue_payload_light()]).
 #' @inheritParams hue_resources
 #'
-#' @return A `tbl_json` tibble (or list when `tidy = FALSE`) containing the
+#' @return A `tibble` (or list when `tidy = FALSE`) containing the
 #'   bridge response `data` array.
 #' @seealso [hue_payload_light()], [hue_get_rooms()], [hue_get_zones()]
 #' @name hue_lighting

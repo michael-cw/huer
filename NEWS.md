@@ -1,6 +1,6 @@
 # huer 0.1.0
 
-* Initial release of `huer`, providing complete `httr2`, `tidyjson`, and `cli`
+* Initial release of `huer`, providing complete `httr2`, `jsonlite`, and `cli`
   support for the Philips Hue CLIP API v2 and Hue Bridge Pro.
 * Added typed `GET`, `POST`, `PUT`, and `DELETE` wrappers for all 41 CLIP API
   v2 and Bridge Pro resource types, plus generic `hue_resource_*()` helpers and

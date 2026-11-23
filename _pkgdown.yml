@@ -7,7 +7,7 @@ template:
 home:
   title: huer — Philips Hue Bridge API v2 and Bridge Pro Client
   description: >
-    Complete httr2, tidyjson, and cli R client for all GET, POST, PUT, and
+    Complete httr2, jsonlite, and cli R client for all GET, POST, PUT, and
     DELETE endpoints on Philips Hue Bridge v2 and Bridge Pro.
 
 reference:
@@ -48,8 +48,8 @@ reference:
       - hue_entertainment
       - hue_automation
 
-  - title: Payload Builders & TidyJSON Helpers
-    desc: Construct validated JSON payloads and explore nested CLIP v2 responses with tidyjson.
+  - title: Payload Builders & JSON Helpers
+    desc: Construct validated JSON payloads and explore nested CLIP v2 responses as tidy tibbles.
     contents:
       - hue_payload_light
       - hue_resource_identifier

@@ -29,7 +29,7 @@
 #' @param body Named list representing the CLIP API v2 JSON payload.
 #' @inheritParams hue_resources
 #'
-#' @return A `tbl_json` tibble (or list when `tidy = FALSE`) containing the
+#' @return A `tibble` (or list when `tidy = FALSE`) containing the
 #'   bridge response `data` array.
 #' @seealso [hue_get_application_id()], [hue_get_bell_buttons()]
 #' @name hue_entertainment

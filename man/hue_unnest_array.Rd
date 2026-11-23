@@ -2,26 +2,26 @@
 % Please edit documentation in R/request.R
 \name{hue_unnest_array}
 \alias{hue_unnest_array}
-\title{Unnest a Nested JSON Array Field from a Hue Response}
+\title{Unnest a Nested JSON Array Column from a Hue Response}
 \usage{
 hue_unnest_array(x, col)
 }
 \arguments{
-\item{x}{A \code{tbl_json} object returned by \code{\link[=hue_parse_response]{hue_parse_response()}} or any
-\verb{hue_get_*()} function.}
+\item{x}{A \code{data.frame} or \code{tibble} returned by \code{\link[=hue_parse_response]{hue_parse_response()}} or
+any \verb{hue_get_*()} function with \code{tidy = TRUE}.}
 
-\item{col}{Character scalar. Name of the nested JSON array key to expand
-(e.g., \code{"children"} or \code{"services"}).}
+\item{col}{Character scalar. Name of the nested JSON array list-column to
+expand (e.g., \code{"children"} or \code{"services"}).}
 }
 \value{
-A \code{tbl_json} tibble with one row per element of the nested array,
-preserving parent columns and spreading array element fields.
+A \code{tibble} with one row per element of the nested array, preserving
+parent columns and spreading nested element fields.
 }
 \description{
-Uses \code{tidyjson} to enter and expand a nested array property (such as
-\code{"children"}, \code{"services"}, \code{"actions"}, \code{"channels"}, or \code{"locations"})
-stored inside the \code{..JSON} payload of a \code{tbl_json} object returned by
-\code{huer}.
+Expands a nested JSON array list-column (such as \code{"children"},
+\code{"services"}, \code{"actions"}, \code{"channels"}, or \code{"locations"}) from a \code{tibble}
+returned by \code{huer}, repeating parent rows and flattening each element's
+fields into columns.
 }
 \examples{
 room_json <- paste0(

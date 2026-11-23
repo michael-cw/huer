@@ -10,19 +10,20 @@ hue_parse_response(json, tidy = TRUE)
 \item{json}{Character scalar containing a JSON string, or a parsed R list
 containing a \code{data} element.}
 
-\item{tidy}{Logical scalar. If \code{TRUE} (default), returns a \code{tbl_json} tibble
-via \code{tidyjson}. If \code{FALSE}, returns the raw parsed R list.}
+\item{tidy}{Logical scalar. If \code{TRUE} (default), returns a flattened
+\code{tibble}. If \code{FALSE}, returns the raw parsed R list.}
 }
 \value{
-A \code{tbl_json} tibble (inheriting from \code{tbl_df}, \code{tbl}, \code{data.frame})
-when \code{tidy = TRUE}, or a named list when \code{tidy = FALSE}.
+A \code{tibble} (\code{tbl_df}, \code{tbl}, \code{data.frame}) when \code{tidy = TRUE}, or a
+named list when \code{tidy = FALSE}.
 }
 \description{
 Parses a standard Philips Hue CLIP API v2 JSON envelope
-(\verb{\{"errors": [...], "data": [...]\}}) into a \code{tbl_json} tibble using
-\code{tidyjson}, automatically spreading scalar and nested object properties into
-columns while preserving the underlying \code{..JSON} attribute for nested array
-exploration with \code{\link[=hue_unnest_array]{hue_unnest_array()}} or \code{tidyjson} verbs.
+(\verb{\{"errors": [...], "data": [...]\}}) into a tidy \code{tibble} using \code{jsonlite}
+and base R, automatically flattening scalar and nested object properties
+into dot-separated columns while preserving nested JSON arrays (such as
+\code{children} or \code{services}) as list-columns for inspection or expansion with
+\code{\link[=hue_unnest_array]{hue_unnest_array()}}.
 }
 \examples{
 sample_json <- paste0(

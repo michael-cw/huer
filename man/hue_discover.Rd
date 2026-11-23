@@ -10,11 +10,11 @@ hue_discover(timeout = 10, tidy = TRUE)
 \item{timeout}{Numeric scalar. Request timeout in seconds. Defaults to \code{10}.}
 
 \item{tidy}{Logical scalar. If \code{TRUE} (default), parses the JSON response
-into a \code{tbl_json} tibble via \code{tidyjson}. If \code{FALSE}, returns the parsed R
+into a \code{tibble} via \code{jsonlite}. If \code{FALSE}, returns the parsed R
 list from \code{jsonlite}.}
 }
 \value{
-A \code{tbl_json} tibble (or list when \code{tidy = FALSE}) containing
+A \code{tibble} (or list when \code{tidy = FALSE}) containing
 discovered bridges (\code{id}, \code{internalipaddress}, \code{port}).
 }
 \description{

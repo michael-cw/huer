@@ -27,8 +27,8 @@ hue_update_grouped_light(id, body, bridge = NULL, tidy = TRUE)
 \code{NULL}, resolves from session defaults set by \code{\link[=hue_auth]{hue_auth()}} or environment
 variables.}
 
-\item{tidy}{Logical scalar. If \code{TRUE} (default), returns a \code{tbl_json} tibble
-parsed via \code{tidyjson}. If \code{FALSE}, returns the raw parsed R list.}
+\item{tidy}{Logical scalar. If \code{TRUE} (default), returns a \code{tibble}
+parsed via \code{jsonlite}. If \code{FALSE}, returns the raw parsed R list.}
 
 \item{id}{Character scalar. UUID of the light or grouped light resource.}
 
@@ -36,7 +36,7 @@ parsed via \code{tidyjson}. If \code{FALSE}, returns the raw parsed R list.}
 (see \code{\link[=hue_payload_light]{hue_payload_light()}}).}
 }
 \value{
-A \code{tbl_json} tibble (or list when \code{tidy = FALSE}) containing the
+A \code{tibble} (or list when \code{tidy = FALSE}) containing the
 bridge response \code{data} array.
 }
 \description{

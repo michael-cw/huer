@@ -24,7 +24,7 @@ scenes, and control individual lights inside each room or zone.
 The application uses four packages:
 
 * `huer` — connects to the Philips Hue CLIP API v2 via `httr2` and parses JSON
-  responses into `tidyjson` tibbles.
+  responses into tidy tibbles with `jsonlite`.
 * `shiny` — provides the reactive web application framework.
 * `bslib` — provides a modern Bootstrap 5 sidebar layout (`page_sidebar()`),
   cards, tabs, and value boxes.
@@ -55,8 +55,8 @@ nested JSON arrays (`children` and `services`):
   (`rtype == "grouped_light"`).
 * A **scene** (`hue_get_scenes()`) links to its room or zone via `group.rid`.
 
-Because `huer` returns `tbl_json` objects, `hue_unnest_array()` resolves these
-relationships in a single line:
+Because `huer` stores nested JSON arrays as list-columns on the returned
+`tibble`, `hue_unnest_array()` resolves these relationships in a single line:
 
 ```{r graph-demo}
 library(huer)

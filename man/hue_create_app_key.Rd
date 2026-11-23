@@ -36,7 +36,7 @@ certificate. Defaults to \code{FALSE} for initial local LAN onboarding; supply
 \item{timeout}{Numeric scalar. Request timeout in seconds. Defaults to \code{10}.}
 }
 \value{
-A \code{tbl_json} tibble containing \code{username} (the \code{hue-application-key})
+A \code{tibble} containing \code{username} (the \code{hue-application-key})
 and, when requested, \code{clientkey}.
 }
 \description{

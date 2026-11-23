@@ -12,8 +12,8 @@ Description: Provides a complete 'httr2'-based client for the 'Philips Hue'
     'CLIP' API v2 and Bridge Pro local HTTPS endpoints, covering all GET,
     POST, PUT, and DELETE resource operations, bridge discovery,
     authentication, and real-time Server-Sent Events ('SSE') streaming. API
-    responses are parsed into tidy structures using 'tidyjson', with
-    structured diagnostics powered by 'cli'.
+    responses are parsed into tidy tibbles using 'jsonlite', with structured
+    diagnostics powered by 'cli'.
 License: MIT + file LICENSE
 URL: https://michael-cw.github.io/huer/, https://github.com/michael-cw/huer
 BugReports: https://github.com/michael-cw/huer/issues
@@ -27,8 +27,7 @@ Imports:
     httr2 (>= 1.0.0),
     jsonlite (>= 1.8.0),
     rlang (>= 1.1.0),
-    tibble (>= 3.2.0),
-    tidyjson (>= 0.3.2)
+    tibble (>= 3.2.0)
 Suggests: 
     knitr,
     rmarkdown,

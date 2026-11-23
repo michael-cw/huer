@@ -17,8 +17,8 @@ knitr::opts_chunk$set(
 `huer` is an `httr2`-based R client for the **Philips Hue CLIP API v2** and
 **Hue Bridge Pro** local HTTPS endpoints. It wraps all `GET`, `POST`, `PUT`,
 and `DELETE` resource operations across 41 CLIP v2 and Bridge Pro resource
-types, parses JSON envelopes into tidy `tbl_json` tables via `tidyjson`, and
-provides clear diagnostics powered by `cli`.
+types, parses JSON envelopes into tidy `tibble` data frames via `jsonlite`,
+and provides clear diagnostics powered by `cli`.
 
 ## Discovering and Authenticating with a Bridge
 
@@ -103,15 +103,15 @@ scenes <- hue_get_scenes()
 hue_recall_scene(scenes$id[[1]], action = "active", duration = 1000)
 ```
 
-## Working with `tidyjson` Responses
+## Working with Nested JSON Responses
 
 Every API response from `huer` is parsed through `hue_parse_response()` into a
-`tbl_json` object (which inherits from `tibble`). Scalar and nested object
-properties are spread into columns automatically, while nested arrays (such as
-`children`, `services`, or `actions`) remain accessible through
+`tibble`. Scalar and nested object properties are flattened into dot-separated
+columns automatically, while nested arrays (such as `children`, `services`, or
+`actions`) are stored as list-columns that can be expanded cleanly with
 `hue_unnest_array()`:
 
-```{r tidyjson-demo}
+```{r json-demo}
 sample_room <- paste0(
   '{"errors":[],"data":[{"id":"room-01","type":"room",',
   '"metadata":{"name":"Living Room","archetype":"living_room"},',
@@ -124,7 +124,7 @@ sample_room <- paste0(
 rooms <- hue_parse_response(sample_room)
 rooms
 
-# Expand nested arrays directly with tidyjson
+# Expand nested array list-columns
 hue_unnest_array(rooms, "children")
 hue_unnest_array(rooms, "services")
 ```

@@ -7,7 +7,7 @@
 #' updates).
 #'
 #' @param callback Optional function invoked for each received SSE event. It
-#'   receives a single argument: the parsed event object (`tbl_json` when
+#'   receives a single argument: the parsed event object (`tibble` when
 #'   `tidy = TRUE`, or a parsed list when `tidy = FALSE`). Return `FALSE` from
 #'   `callback` to stop streaming early.
 #' @param max_events Positive integer scalar. Maximum number of SSE events to
@@ -18,7 +18,8 @@
 #'   `NULL`, resolves from session defaults set by [hue_auth()] or environment
 #'   variables.
 #' @param tidy Logical scalar. If `TRUE` (default), parses each event's JSON
-#'   data payload with `tidyjson`. If `FALSE`, returns raw parsed lists.
+#'   data payload into a `tibble` with `jsonlite`. If `FALSE`, returns raw
+#'   parsed lists.
 #'
 #' @return A list of parsed event objects (invisibly if `callback` is
 #'   provided).

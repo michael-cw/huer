@@ -161,10 +161,10 @@ hue_auth <- function(ip = NULL,
 #'
 #' @param timeout Numeric scalar. Request timeout in seconds. Defaults to `10`.
 #' @param tidy Logical scalar. If `TRUE` (default), parses the JSON response
-#'   into a `tbl_json` tibble via `tidyjson`. If `FALSE`, returns the parsed R
+#'   into a `tibble` via `jsonlite`. If `FALSE`, returns the parsed R
 #'   list from `jsonlite`.
 #'
-#' @return A `tbl_json` tibble (or list when `tidy = FALSE`) containing
+#' @return A `tibble` (or list when `tidy = FALSE`) containing
 #'   discovered bridges (`id`, `internalipaddress`, `port`).
 #' @seealso [hue_create_app_key()], [hue_bridge()]
 #' @export
@@ -216,7 +216,7 @@ hue_discover <- function(timeout = 10, tidy = TRUE) {
 #' @param ca_cert Optional path to a PEM CA certificate bundle.
 #' @param timeout Numeric scalar. Request timeout in seconds. Defaults to `10`.
 #'
-#' @return A `tbl_json` tibble containing `username` (the `hue-application-key`)
+#' @return A `tibble` containing `username` (the `hue-application-key`)
 #'   and, when requested, `clientkey`.
 #' @seealso [hue_auth()], [hue_bridge()], [hue_get_application_id()]
 #' @export

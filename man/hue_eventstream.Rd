@@ -14,7 +14,7 @@ hue_eventstream(
 }
 \arguments{
 \item{callback}{Optional function invoked for each received SSE event. It
-receives a single argument: the parsed event object (\code{tbl_json} when
+receives a single argument: the parsed event object (\code{tibble} when
 \code{tidy = TRUE}, or a parsed list when \code{tidy = FALSE}). Return \code{FALSE} from
 \code{callback} to stop streaming early.}
 
@@ -29,7 +29,8 @@ to \code{30}.}
 variables.}
 
 \item{tidy}{Logical scalar. If \code{TRUE} (default), parses each event's JSON
-data payload with \code{tidyjson}. If \code{FALSE}, returns raw parsed lists.}
+data payload into a \code{tibble} with \code{jsonlite}. If \code{FALSE}, returns raw
+parsed lists.}
 }
 \value{
 A list of parsed event objects (invisibly if \code{callback} is

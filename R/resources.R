@@ -97,10 +97,10 @@ hue_endpoints <- function() {
 #' @param bridge Optional `hue_bridge` object created by [hue_bridge()]. If
 #'   `NULL`, resolves from session defaults set by [hue_auth()] or environment
 #'   variables.
-#' @param tidy Logical scalar. If `TRUE` (default), returns a `tbl_json` tibble
-#'   parsed via `tidyjson`. If `FALSE`, returns the raw parsed R list.
+#' @param tidy Logical scalar. If `TRUE` (default), returns a `tibble`
+#'   parsed via `jsonlite`. If `FALSE`, returns the raw parsed R list.
 #'
-#' @return A `tbl_json` tibble (or list when `tidy = FALSE`) representing the
+#' @return A `tibble` (or list when `tidy = FALSE`) representing the
 #'   bridge response `data` array.
 #' @seealso [hue_endpoints()], [hue_parse_response()]
 #' @name hue_resources

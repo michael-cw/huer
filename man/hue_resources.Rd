@@ -24,8 +24,8 @@ hue_resource_delete(resource, id, bridge = NULL, tidy = TRUE)
 \code{NULL}, resolves from session defaults set by \code{\link[=hue_auth]{hue_auth()}} or environment
 variables.}
 
-\item{tidy}{Logical scalar. If \code{TRUE} (default), returns a \code{tbl_json} tibble
-parsed via \code{tidyjson}. If \code{FALSE}, returns the raw parsed R list.}
+\item{tidy}{Logical scalar. If \code{TRUE} (default), returns a \code{tibble}
+parsed via \code{jsonlite}. If \code{FALSE}, returns the raw parsed R list.}
 
 \item{resource}{Character scalar. CLIP API v2 resource type name (see
 \code{\link[=hue_endpoints]{hue_endpoints()}} for all 41 built-in resource types).}
@@ -37,7 +37,7 @@ type.}
 \item{body}{Named list representing the JSON payload for \code{POST} or \code{PUT}.}
 }
 \value{
-A \code{tbl_json} tibble (or list when \code{tidy = FALSE}) representing the
+A \code{tibble} (or list when \code{tidy = FALSE}) representing the
 bridge response \code{data} array.
 }
 \description{

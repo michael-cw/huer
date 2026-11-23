@@ -1,48 +1,70 @@
-test_that("hue_parse_response handles objects, empty data, and tidy = FALSE", {
+test_that("hue_parse_response handles objects, heterogeneous rows, nulls, empty data, and tidy = FALSE", {
   json_ok <- paste0(
     '{"errors":[],"data":[',
     '{"id":"l-1","type":"light","metadata":{"name":"Lamp"},',
-    '"on":{"on":true},"dimming":{"brightness":62.5}}]}'
+    '"on":{"on":true},"dimming":{"brightness":62.5},',
+    '"color_temperature":{"mirek":null},',
+    '"effects":{"effect_values":["no_effect","candle"]}},',
+    '{"id":"p-1","type":"light","metadata":{"name":"Smart Plug"},',
+    '"on":{"on":false}}]}'
   )
 
   res <- hue_parse_response(json_ok)
-  expect_s3_class(res, "tbl_json")
-  expect_identical(nrow(res), 1L)
-  expect_identical(res$id, "l-1")
-  expect_identical(res$metadata.name, "Lamp")
-  expect_true(res$on.on)
-  expect_equal(res$dimming.brightness, 62.5)
-  expect_false("document.id" %in% names(res))
-  expect_false("array.index" %in% names(res))
+  expect_s3_class(res, "tbl_df")
+  expect_identical(nrow(res), 2L)
+  expect_identical(res$id, c("l-1", "p-1"))
+  expect_identical(res$metadata.name, c("Lamp", "Smart Plug"))
+  expect_identical(res$on.on, c(TRUE, FALSE))
+  expect_equal(res$dimming.brightness, c(62.5, NA_real_))
+  expect_true(all(is.na(res$color_temperature.mirek)))
+  expect_identical(res$effects.effect_values[[1L]], c("no_effect", "candle"))
+  expect_null(res$effects.effect_values[[2L]])
 
   res_raw <- hue_parse_response(json_ok, tidy = FALSE)
   expect_type(res_raw, "list")
   expect_identical(res_raw$data[[1]]$id, "l-1")
 
   empty <- hue_parse_response('{"errors":[],"data":[]}')
-  expect_s3_class(empty, "tbl_json")
+  expect_s3_class(empty, "tbl_df")
   expect_identical(nrow(empty), 0L)
 
   expect_error(hue_parse_response('{"errors":[]}'), "data")
 })
 
-test_that("hue_unnest_array expands nested JSON arrays via tidyjson", {
+test_that("hue_unnest_array expands nested JSON arrays, handles empty rows and scalar arrays", {
   room_json <- paste0(
-    '{"errors":[],"data":[{"id":"room-1","type":"room",',
-    '"metadata":{"name":"Office"},',
-    '"children":[{"rid":"dev-1","rtype":"device"},',
-    '{"rid":"dev-2","rtype":"device"}]}]}'
+    '{"errors":[],"data":[',
+    '{"id":"room-1","type":"room","metadata":{"name":"Office"},',
+    '"children":[{"rid":"dev-1","rtype":"device"},{"rid":"dev-2","rtype":"device"}]},',
+    '{"id":"room-2","type":"room","metadata":{"name":"Hallway"},"children":[]}]}'
   )
 
   rooms <- hue_parse_response(room_json)
+  expect_s3_class(rooms, "tbl_df")
+  expect_true("children" %in% names(rooms))
+  expect_s3_class(rooms$children[[1L]], "tbl_df")
+
   children <- hue_unnest_array(rooms, "children")
-  expect_s3_class(children, "tbl_json")
+  expect_s3_class(children, "tbl_df")
   expect_identical(nrow(children), 2L)
   expect_identical(children$rid, c("dev-1", "dev-2"))
   expect_identical(children$rtype, c("device", "device"))
   expect_identical(children$metadata.name, c("Office", "Office"))
+  expect_false("children" %in% names(children))
 
-  expect_error(hue_unnest_array(list(), "children"), "tbl_json")
+  # Scalar array unnesting
+  light_json <- paste0(
+    '{"errors":[],"data":[{"id":"l-1","effects":{"effect_values":["candle","fire"]}}]}'
+  )
+  lights <- hue_parse_response(light_json)
+  fx <- hue_unnest_array(lights, "effects.effect_values")
+  expect_identical(nrow(fx), 2L)
+  expect_identical(fx$effects.effect_values, c("candle", "fire"))
+
+  # Validation errors
+  expect_error(hue_unnest_array(list(), "children"), "tibble")
+  expect_error(hue_unnest_array(rooms, "nonexistent"), "not found")
+  expect_error(hue_unnest_array(rooms, "id"), "not a list-column")
 })
 
 test_that("hue_payload_light and hue_resource_identifier build valid payloads", {
